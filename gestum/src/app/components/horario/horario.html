@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card">
+    <div class="titulo">
+      <h1>Horario de la semana</h1>
+    </div>
+    <div class="horario">
+      <div class="header">
+        <div>Dia de la semana</div>
+        <div>Hora de entrada</div>
+        <div>Hora de salida</div>
+        <div>Horas trabajadas</div>
+      </div>
+      @for (dia of horario.dias; track $index) {
+         <div class="dia-semana">
+         <div>{{dia.dia}}</div>
+        <div>{{dia.horaEntrada}}</div>
+        <div>{{dia.horaSalida}}</div>
+        <div>{{dia.horasTrabajadas}}</div>
+      </div>
+      }
+
+  </div>
+  <div class="footer">
+  <button class="btn-descargar" (click)="descargarExcel()">Descargar Horario</button>
+
+  </div>
+</div>

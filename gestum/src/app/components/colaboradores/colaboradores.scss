@@ -1,0 +1,51 @@
+.container{
+  flex-direction: column !important;
+  gap: 40px;
+
+}
+.card{
+  width: 80%;
+  height: 50%;
+  border-radius: 30px;
+  background-color: white;
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+
+}
+.card-header{
+  height: 20%;
+}
+.contenedor-empleados{
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas iguales */
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+   .header {
+  font-weight: bold;
+  padding: 8px;
+}
+.marcador-asistencia{
+  border: 2px solid;
+  border-radius: 10px;
+  min-height: 50px;
+}
+
+}
+.empleado{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-empleado{
+  width: 100%;
+  display: flex;
+
+}

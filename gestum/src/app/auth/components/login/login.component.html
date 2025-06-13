@@ -1,0 +1,21 @@
+<div class="body">
+
+  <img class="img-gestum" src="./gestum-sin-fondo.png" alt="Gestum">
+  <form class="div-login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <h1>Iniciar Sesión</h1>
+    <img src="./login.png" alt="">
+    <div class="form-field">
+      <input type="email" formControlName="username" placeholder="Correo Electrónico">
+      <div class="error" *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+        El campo es obligatorio</div>
+    </div>
+    <div class="form-field">
+      <input type="password" formControlName="password" placeholder="Contraseña">
+      <div class="error"
+        *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+        El campo es obligatorio</div>
+    </div>
+    <button class="btn-ingresar">Ingresar</button>
+  </form>
+
+</div>

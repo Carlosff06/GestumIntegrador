@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="card">
+    <div class="div-img">
+    <img src="https://th.bing.com/th/id/OIP.D_ccwaf7m9uOH3ypLwWd0AHaHa?rs=1&pid=ImgDetMain" alt="">
+      </div>
+      <form class="form-container" [formGroup]="formGroup">
+        <div class="input-container">
+          <label for="input" >Nombre y Apellido</label>
+
+           <input type="text" formControlName="nombre_apellidos" id="input" placeholder="Nombre del Colaborador">
+
+        </div>
+        <div class="input-container">
+          <label for="input" >DNI</label>
+            <input type="number" id="input" formControlName="dni" placeholder="DNI del Colaborador">
+
+        </div>
+         <div class="input-container">
+          <label for="input" >Email</label>
+            <input type="text" id="input" formControlName="email" placeholder="Email del Colaborador">
+
+        </div>
+        <div class="input-container">
+          <label for="input" >Estado</label>
+            <input type="text" id="input" formControlName="estado" placeholder="Estado">
+
+        </div>
+        <div class="input-container">
+          <label for="input" >Área</label>
+            <input type="text" id="input" formControlName="area" placeholder="Area">
+
+        </div>
+        <div class="input-container">
+          <label for="input" >Código</label>
+            <input type="text" id="input" formControlName="codigo" placeholder="Código">
+
+        </div>
+        <div class="input-container">
+          <button (click)="marcarEntrada()">Marcar Entrada</button>
+        </div>
+         <div class="input-container">
+          <button (click)="marcarSalida()">Marcar Salida</button>
+        </div>
+      </form>
+  </div>
+</div>

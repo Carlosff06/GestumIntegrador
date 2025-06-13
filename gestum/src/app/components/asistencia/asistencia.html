@@ -1,0 +1,26 @@
+<div class="container">
+  <span class="date">{{hoy | date }}</span>
+  <div class="card card-header">
+    <h3>Horas trabajadas</h3>
+    <div>{{horasTrabajadas()}} horas</div>
+  </div>
+  <div class="card">
+    <div class="header-asistencia">
+    <h1>{{ meses[asistencias.value().mes-1]}} {{ asistencias.value().anio}}</h1>
+    </div>
+    <div class="contenedor-dias">
+
+    @for (dia of asistencias.value().asistencias; track $index) {
+      <div class="dia" [ngStyle]="{
+    'background-color': dia.estado === 'asistencia' ? 'green' :
+                        dia.estado === 'inacistencia' ? 'red' : 'white',
+    'border': dia.estado === 'asistencia' ? '2px solid green' :
+                        dia.estado === 'inacistencia' ? '2px solid red' : '2px solid'
+  }">
+        {{dia.dia}}
+      </div>
+    }
+
+    </div>
+  </div>
+</div>

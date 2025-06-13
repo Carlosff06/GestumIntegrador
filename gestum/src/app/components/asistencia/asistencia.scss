@@ -1,0 +1,39 @@
+.container{
+  flex-direction: column !important;
+  gap: 40px;
+
+}
+.date{
+
+  justify-self: start;
+  width: 80%;
+}
+.card{
+  width: 80%;
+  height: 50%;
+  border-radius: 30px;
+  background-color: white;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 20% 80%;
+
+
+}
+.card-header{
+  height: 20%;
+}
+.contenedor-dias{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.dia{
+  width: 100%;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: bold;
+}

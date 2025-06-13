@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="card card-header">
+    <h3>Horas trabajadas</h3>
+  </div>
+  <div class="card">
+    
+    <div class="contenedor-empleados">
+
+      <div class="header">Nombres</div>
+      <div class="header">Área</div>
+      <div class="header">Código</div>
+      <div class="header">Email</div>
+      <div class="header">DNI</div>
+      <div class="header">Estado</div>
+
+      @for (empleado of empleados(); track $index) {
+
+        <div class="empleado">{{empleado.nombre}}</div>
+        <div class="empleado">{{empleado.area}}</div>
+        <div class="empleado">{{empleado.id}}</div>
+        <div class="empleado">{{empleado.email}}</div>
+        <div class="empleado">{{empleado.dni}}</div>
+        <div class="empleado marcador-asistencia" [ngStyle]="{
+    'background-color': empleado.estado === 'asistencia' ? 'green' :
+                        empleado.estado === 'inacistencia' ? 'red' : 'white',
+    'border': empleado.estado === 'asistencia' ? '2px solid green' :
+                        empleado.estado === 'inacistencia' ? '2px solid red' : '2px solid'
+  }">{{empleado.estado}}</div>
+
+      }
+
+    </div>
+  </div>
+</div>
