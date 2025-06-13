@@ -39,6 +39,24 @@
   height: 20%;
 
 }
+
+.header-asistencia{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.burbuja{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 .div-total{
   font-size: 27px;
   font-size: 0.7rem;

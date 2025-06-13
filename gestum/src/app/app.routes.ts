@@ -21,7 +21,7 @@ export const routes: Routes = [
       children:[
       { path: '', redirectTo: 'colaborador', pathMatch: 'full' },
         {path:'colaborador', component:Colaborador},
-        {path:'horarios', component:Horarios},
+        {path:'horarios', component:Horarios, canActivate:[rolGuard]},
         {path:'horario', component:HorarioComponent},
         {path: 'vacaciones', component:Vacaciones},
         {path:'asistencia', component:Asistencia},

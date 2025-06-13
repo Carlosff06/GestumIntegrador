@@ -41,7 +41,7 @@
 }
 .datos > * {
   width: 100%;
-  
+
 }
 .horario{
 
@@ -64,7 +64,14 @@
 
 
 }
-
+button{
+  width: 100px;
+  border-radius: 10px;
+  background-color: #5932EA;
+  color: white;
+  border: 2px solid #5932EA;
+  cursor: pointer;
+}
 .header{
   display: grid;
   grid-template-columns: auto auto auto auto;

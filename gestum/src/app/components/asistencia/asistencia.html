@@ -1,6 +1,6 @@
 <div class="container">
   <span class="date">{{hoy | date }}</span>
-  
+
      <div class="card card-header">
     <div class="contenedor-div-total">
     <div class="div-total">Horas trabajadas</div>
@@ -10,7 +10,10 @@
   <div class="card">
     <div class="header-asistencia">
     <h1>{{ meses[asistencias.value().mes-1]}} {{ asistencias.value().anio}}</h1>
-    </div>
+      <div class="burbuja" style="background-color: green;">✔</div>Asistio
+      <div class="burbuja" style="background-color: grey;">🕓</div>Pendiente
+      <div class="burbuja" style="background-color: red;">✖</div>Inasistencia
+  </div>
     <div class="contenedor-dias">
 
     @for (dia of asistencias.value().asistencias; track $index) {

@@ -77,6 +77,7 @@ public class EmpleadoController {
                                         .orElse("pendiente"))
                                 .defaultIfEmpty("pendiente")
                                 .map(estado -> new EmpleadoConAsistencia(
+                                        empleado.getId(),
                                         empleado.getNombre(),
                                         empleado.getArea(),
                                         empleado.getId(),

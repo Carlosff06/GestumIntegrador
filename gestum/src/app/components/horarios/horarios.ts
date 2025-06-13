@@ -140,7 +140,8 @@ let fechaInicio = lunesSemana;
   }
 
   guardarHorario(){
-    console.log(this.horario)
+
+    if(this.horario){
     this.horarioService.guardarHorario(this.horario).subscribe({
       next:(res)=>{
         alert("Horario guardado correctamente");
@@ -149,6 +150,9 @@ let fechaInicio = lunesSemana;
         alert("Hubo un error");
       }
     })
+    } else{
+      alert("Debe escoger a un empleado para registrar su horario primero");
+    }
   }
 
 
