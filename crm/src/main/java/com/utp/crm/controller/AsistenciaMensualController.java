@@ -3,6 +3,7 @@ package com.utp.crm.controller;
 import com.utp.crm.dto.EntradaRequest;
 import com.utp.crm.dto.SalidaRequest;
 import com.utp.crm.model.AsistenciaMensual;
+import com.utp.crm.service.AsistenciaChangeService;
 import com.utp.crm.service.AsistenciaMensualService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,12 @@ public class AsistenciaMensualController {
 
     @Autowired
     private AsistenciaMensualService asistenciaMensualService;
+
+    private final AsistenciaChangeService asistenciaChangeService;
+
+    public AsistenciaMensualController(AsistenciaChangeService asistenciaChangeService) {
+        this.asistenciaChangeService = asistenciaChangeService;
+    }
 
     @GetMapping("/registrar-dias")
     public Mono<AsistenciaMensual> registrarDias(@RequestParam String empleadoId){
@@ -30,13 +37,16 @@ public class AsistenciaMensualController {
             return Mono.error(new IllegalArgumentException("El ID del empleado no puede estar vacío"));
         }
         return asistenciaMensualService.registrarEntrada(entradaRequest)
-                .thenReturn(entradaRequest);
+                .doOnSuccess(x -> {
+                    System.out.println("✅ Enviando cambio por salida: " + entradaRequest.empleadoId());
+                    asistenciaChangeService.notificarCambio("salida:" + entradaRequest.empleadoId());
+                }).thenReturn(entradaRequest);
     }
     @PostMapping("/marcar-salida")
-    public SalidaRequest marcarSalida(@RequestBody SalidaRequest salidaRequest){
+    public Mono<SalidaRequest> marcarSalida(@RequestBody SalidaRequest salidaRequest){
 
-        asistenciaMensualService.registrarSalida(salidaRequest).subscribe();
-        return salidaRequest;
-    }
+        return asistenciaMensualService.registrarSalida(salidaRequest)
+                .doOnSuccess(x -> asistenciaChangeService.notificarCambio("salida:" + salidaRequest.empleadoId()))
+                .thenReturn(salidaRequest); }
 
 }

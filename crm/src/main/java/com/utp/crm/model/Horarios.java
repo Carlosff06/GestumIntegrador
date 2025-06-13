@@ -12,7 +12,7 @@ public class Horarios {
 
     @Id
     private String id;
-    private ObjectId empleadoId;
+    private String empleadoId;
     private LocalDate fechaInicio;  // 2025-06-09
     private LocalDate fechaFin;
     private List<Dia> dias;
@@ -21,7 +21,7 @@ public class Horarios {
     public Horarios() {
     }
 
-    public Horarios(String id, ObjectId empleadoId, LocalDate fechaInicio, LocalDate fechaFin, List<Dia> dias, Integer totalSemanal) {
+    public Horarios(String id, String empleadoId, LocalDate fechaInicio, LocalDate fechaFin, List<Dia> dias, Integer totalSemanal) {
         this.id = id;
         this.empleadoId = empleadoId;
         this.fechaInicio = fechaInicio;
@@ -38,11 +38,11 @@ public class Horarios {
         this.id = id;
     }
 
-    public ObjectId getEmpleadoId() {
+    public String getEmpleadoId() {
         return empleadoId;
     }
 
-    public void setEmpleadoId(ObjectId empleadoId) {
+    public void setEmpleadoId(String empleadoId) {
         this.empleadoId = empleadoId;
     }
 
@@ -76,5 +76,17 @@ public class Horarios {
 
     public void setTotalSemanal(Integer totalSemanal) {
         this.totalSemanal = totalSemanal;
+    }
+
+    @Override
+    public String toString() {
+        return "Horarios{" +
+                "id='" + id + '\'' +
+                ", empleadoId='" + empleadoId + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", dias=" + dias +
+                ", totalSemanal=" + totalSemanal +
+                '}';
     }
 }

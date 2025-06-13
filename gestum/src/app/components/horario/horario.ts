@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { HorarioService } from '../../core/services/horario.service';
 import { Horario } from '../../core/model/horario';
 import { UsuarioService } from '../../auth/services/usuario.service';
@@ -11,7 +11,9 @@ import { UsuarioService } from '../../auth/services/usuario.service';
 })
 export class HorarioComponent implements OnInit{
 
-  horario!:Horario;
+
+   horario:WritableSignal<Horario> = signal<Horario>(new Horario('','','','',[],0));
+
   userid= signal('')
 
   formattedDate = new Date().toISOString().split('T')[0];
@@ -23,13 +25,25 @@ export class HorarioComponent implements OnInit{
     this.buscarHorarioPorSemana()
   }
 
+  extraerHora(fecha: string): string {
+  if (!fecha) return '';
+
+  const date = new Date(fecha);
+  const horas = String(date.getHours()).padStart(2, '0');
+  const minutos = String(date.getMinutes()).padStart(2, '0');
+
+  return `${horas}:${minutos}`;
+}
+
+
+
   buscarHorarioPorSemana(){
 
     this.horarioService.buscarHorarioPorSemana(this.formattedDate,this.userid()).subscribe({
       next:(res)=>{
         console.log(res)
-        this.horario=res[0];
-        this.cdr.detectChanges();
+        this.horario.set(res);
+        this.cdr.markForCheck();
       }, error:(err)=>{
         console.error(err);
         alert("Hubo un error");

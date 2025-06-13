@@ -52,6 +52,7 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.POST, "/auth/**").permitAll()
                         .pathMatchers(HttpMethod.POST, "/empleado/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/empleado/asistencia/stream").permitAll()
+                        .pathMatchers(HttpMethod.GET,"/ws/asistencia").permitAll()
                         .anyExchange().authenticated()
                 )
                 .addFilterAt(new JwtTokenAuthenticationFilter(tokenProvider), SecurityWebFiltersOrder.HTTP_BASIC)

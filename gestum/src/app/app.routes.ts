@@ -9,6 +9,7 @@ import { guestGuard } from './core/guards/guest.guard';
 import { authGuard } from './core/guards/auth.guard';
 import { Colaboradores } from './components/colaboradores/colaboradores';
 import { rolGuard } from './core/guards/rol.guard';
+import { Horarios } from './components/horarios/horarios';
 
 export const routes: Routes = [
     {path:'', redirectTo: 'login', pathMatch: 'full'},
@@ -18,7 +19,9 @@ export const routes: Routes = [
     {
       path:'home',component:Home,
       children:[
+      { path: '', redirectTo: 'colaborador', pathMatch: 'full' },
         {path:'colaborador', component:Colaborador},
+        {path:'horarios', component:Horarios},
         {path:'horario', component:HorarioComponent},
         {path: 'vacaciones', component:Vacaciones},
         {path:'asistencia', component:Asistencia},

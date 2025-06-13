@@ -28,8 +28,12 @@ public class HorarioService {
     public Mono<ResponseEntity<byte[]>> descargarHorario(LocalDate fecha,
                                   String empleadoIdStr) throws IOException
     {
-        ObjectId empleadoId = new ObjectId(empleadoIdStr);
-
+        Object empleadoId;
+        if (empleadoIdStr != null && empleadoIdStr.length() == 24) {
+            empleadoId = new ObjectId(empleadoIdStr);
+        } else {
+            empleadoId = empleadoIdStr;
+        }
 
         Query query = new Query();
         query.addCriteria(Criteria.where("fechaInicio").lte(fecha)

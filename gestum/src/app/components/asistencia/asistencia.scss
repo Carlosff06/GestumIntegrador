@@ -19,8 +19,29 @@
 
 
 }
+.linea{
+  height: 90%;
+  width: 5px;
+  background: black;
+}
+.contenedor-div-total{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 .card-header{
+  display: flex !important;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
   height: 20%;
+
+}
+.div-total{
+  font-size: 27px;
+  font-size: 0.7rem;
 }
 .contenedor-dias{
   display: grid;

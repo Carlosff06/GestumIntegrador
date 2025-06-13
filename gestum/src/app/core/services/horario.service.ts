@@ -13,12 +13,12 @@ export class HorarioService {
 
    }
 
-   buscarHorarioPorSemana(fecha:string, empleadoId:string):Observable<Horario[]>{
+   buscarHorarioPorSemana(fecha:string, empleadoId:string):Observable<Horario>{
     let params = new HttpParams()
     .set('fecha', fecha)
     .set('empleadoId', empleadoId);
 
-    return this.http.get<Horario[]>(`${this.apiUrl}/buscar`, { params });
+    return this.http.get<Horario>(`${this.apiUrl}/buscar`, { params });
    }
 
    descargarExcel(fecha:string, empleadoId:string):Observable<Blob>{
@@ -27,6 +27,10 @@ export class HorarioService {
     .set('empleadoId', empleadoId);
 
     return this.http.get<Blob>(`${this.apiUrl}/descargar-excel`, { params, responseType:'blob' as 'json' });
+   }
+
+   guardarHorario(horario:Horario){
+    return this.http.post(`${this.apiUrl}`, horario);
    }
 
 }

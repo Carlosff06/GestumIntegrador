@@ -81,7 +81,7 @@ public class AsistenciaMensualService {
             int anio = fechaHoraEntrada.getYear();
             int mes = fechaHoraEntrada.getMonthValue();
             int dia = fechaHoraEntrada.getDayOfMonth();
-        System.out.println(dia);
+       // System.out.println(dia);
             return asistenciaRepository
                     .findByEmpleadoIdAndAnioAndMes(empleadoId, anio, mes)
                     .switchIfEmpty(Mono.error(new RuntimeException("No se encontró asistencia para el mes")))

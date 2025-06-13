@@ -30,25 +30,30 @@ public class EmpleadoController {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final AsistenciaChangeStreamService asistenciaChangeStreamService;
+
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
 
-    public EmpleadoController(PasswordEncoder passwordEncoder, AsistenciaChangeStreamService asistenciaChangeStreamService) {
+    public EmpleadoController(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-        this.asistenciaChangeStreamService = asistenciaChangeStreamService;
+
+    }
+
+    @GetMapping("/buscar-dni")
+    public Mono<Empleado> findByDni(@RequestParam String dni){
+        return empleadoRepository.findByDni(dni);
     }
 
     @GetMapping("/listar-empleados")
     public Flux<Empleado> findEmpleados(){
         return  empleadoRepository.findEmpleadoByRol("USUARIO");
     }
-
+/*
     @GetMapping(value = "/asistencia/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ChangeStreamDocument<Document>> streamAsistenciaCambios() {
         return asistenciaChangeStreamService.getCambiosAsistencia();
-    }
+    }*/
 
     @GetMapping("/listar-empleados-asistencia")
     public Flux<EmpleadoConAsistencia> listarEmpleadosConAsistenciaDelDia() {
@@ -87,8 +92,7 @@ public class EmpleadoController {
 
     @GetMapping()
     public Mono<Empleado> findEmpleadoById(@RequestParam("id") String id){
-        //Mono<Empleado> empleado = empleadoRepository.findByDni("433434");
-        //System.out.println(empleado.get().getSede().getNombre());  // Debería imprimir el nombre de la sede
+
 
         return empleadoRepository.findById(id);
     }
@@ -97,8 +101,8 @@ public class EmpleadoController {
     public Mono<Empleado> createEmpleado(@RequestBody Empleado empleado){
         String contraseñaEncriptada = passwordEncoder.encode(empleado.getContraseña());
         empleado.setContraseña(contraseñaEncriptada);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss"); // AñoMesDíaHoraMinSeg
-        String id = LocalDateTime.now().format(formatter); // Ejemplo: "20250612170532"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String id = LocalDateTime.now().format(formatter);
         if(empleado.getId()==null) {
             empleado.setId(id);
         }
@@ -122,7 +126,7 @@ public class EmpleadoController {
                     return reactiveMongoTemplate.findOne(querySede, Sede.class)
                             .map(sede -> {
                                 System.out.println(sede);
-                                empleado.setSede(sede); // Asignamos la sede al empleado
+                                empleado.setSede(sede);
                                 return empleado;
                             });
                 });

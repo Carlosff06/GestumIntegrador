@@ -1,8 +1,11 @@
 <div class="container">
   <span class="date">{{hoy | date }}</span>
-  <div class="card card-header">
-    <h3>Horas trabajadas</h3>
-    <div>{{horasTrabajadas()}} horas</div>
+  
+     <div class="card card-header">
+    <div class="contenedor-div-total">
+    <div class="div-total">Horas trabajadas</div>
+    <div class="total-colaboradores">{{horasTrabajadas()}}</div>
+    </div>
   </div>
   <div class="card">
     <div class="header-asistencia">

@@ -1,10 +1,18 @@
 <div class="container">
-
+<h1>Resumen colaboradores</h1>
   <div class="card card-header">
-    <h3>Horas trabajadas</h3>
+    <div class="contenedor-div-total">
+    <div class="div-total">Total Colaboradores</div>
+    <div class="total-colaboradores">{{empleados().length}}</div>
+    </div>
+    <div class="linea"></div>
+    <div class="contenedor-div-total">
+      <div class="div-total">Total Asistentes</div>
+      <div class="total-colaboradores"> {{ totalAsistentes }} </div>
+    </div>
   </div>
   <div class="card">
-    
+
     <div class="contenedor-empleados">
 
       <div class="header">Nombres</div>

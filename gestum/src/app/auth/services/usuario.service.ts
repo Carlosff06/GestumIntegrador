@@ -11,35 +11,35 @@ export class UsuarioService {
   constructor(private readonly  http:HttpClient) { }
 
   getUsuarioId(){
-    return localStorage.getItem(constants.CURRENT_USERID) ?? null;
+    return sessionStorage.getItem(constants.CURRENT_USERID) ?? null;
   }
 
 
   setUsuarioId(usuarioId:string){
-    localStorage.setItem(constants.CURRENT_USERID, usuarioId);
+    sessionStorage.setItem(constants.CURRENT_USERID, usuarioId);
   }
 
   setUsuario(usuario:string){
 
-    localStorage.setItem(constants.CURRENT_USER, usuario);
+    sessionStorage.setItem(constants.CURRENT_USER, usuario);
   }
 
   setRol(rol:string){
-    localStorage.setItem(constants.CURRENT_USER_ROLE, rol)
+    sessionStorage.setItem(constants.CURRENT_USER_ROLE, rol)
   }
 
   getRol(){
-    return localStorage.getItem(constants.CURRENT_USER_ROLE) ?? null;
+    return sessionStorage.getItem(constants.CURRENT_USER_ROLE) ?? null;
 
   }
 
   getUsuario(): string | null {
-    return localStorage.getItem(constants.CURRENT_USER) ?? null;
+    return sessionStorage.getItem(constants.CURRENT_USER) ?? null;
   }
 
   removeUsuario(){
 
-    return localStorage.removeItem(constants.CURRENT_USER);
+    return sessionStorage.removeItem(constants.CURRENT_USER);
   }
 
 

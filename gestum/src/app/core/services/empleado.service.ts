@@ -23,20 +23,9 @@ export class EmpleadoService {
     return this.http.get<Empleado>(this.apiUrl, { params });
    }
 
-   escucharCambiosAsistencia(): Observable<any> {
-    return new Observable(observer => {
-      const eventSource = new EventSource(`${this.apiUrl}/asistencia/stream`);
+   buscarEmpleadoPorDni(dni:string):Observable<Empleado>{
+    const params = new HttpParams().set('dni', dni);
 
-      eventSource.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        observer.next(data);
-      };
-
-      eventSource.onerror = (error) => {
-        console.error('Error en el stream de asistencia:', error);
-        eventSource.close();
-        observer.error(error);
-      };
-    });
-  }
+    return this.http.get<Empleado>(`${this.apiUrl}/buscar-dni`, { params });
+   }
 }
